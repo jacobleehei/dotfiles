@@ -1,21 +1,57 @@
+syntax on
 set nocompatible
-
 set backspace=indent,eol,start
 set ruler
 set showcmd
 set relativenumber 
 set ruler
 set autoindent
+set shiftwidth=4
 set nu
-syntax on
 set showmode
-set shell=/usr/local/bin/fish
+set mouse=
+set shell=/usr/bin/fish
 set title
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-F> :NERDTreeFind<CR>
-nnoremap <C-p> :CtrlP<CR>
+" <Telescope>------------------{
+        " Find files using Telescope command-line sugar.
+        nnoremap <leader>ff <cmd>Telescope find_files<cr>
+        nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+        nnoremap <leader>fb <cmd>Telescope buffers<cr>
+        nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" }
+
+" <Nerdtree>-------------------{
+    ">> Basic settings
+        let g:NERDTreeChDirMode = 2  "Change current folder as root
+
+    ">> UI settings
+        let NERDTreeQuitOnOpen=1   " Close NERDtree when files was opened
+        let NERDTreeMinimalUI=1    " Start NERDTree in minimal UI mode (No help lines)
+        let NERDTreeDirArrows=1    " Display arrows instead of ascii art in NERDTree
+        let NERDTreeChDirMode=2    " Change current working directory based on root directory in NERDTree
+        let g:NERDTreeHidden=1     " Don't show hidden files
+        let NERDTreeWinSize=30     " Initial NERDTree width
+        let NERDTreeAutoDeleteBuffer = 1  " Auto delete buffer deleted with NerdTree
+        "let NERDTreeShowBookmarks=0   " Show NERDTree bookmarks
+        let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '__pycache__']   " Hide temp files in NERDTree
+        "let g:NERDTreeShowLineNumbers=1  " Show Line Number
+    " Open Nerdtree when there's no file opened
+        autocmd vimenter * if !argc()|NERDTree|endif
+    " Or, auto-open Nerdtree
+        "autocmd vimenter * NERDTree
+    " Close NERDTree when there's no other windows
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    " Customize icons on Nerdtree
+        let g:NERDTreeDirArrowExpandable = '▸'
+        let g:NERDTreeDirArrowCollapsible = '▾'
+
+        nnoremap <leader>n :NERDTreeFocus<CR>
+        nnoremap <C-t> :NERDTreeToggle<CR>
+        nnoremap <C-n> :NERDTree<CR>
+        nnoremap <C-f> :NERDTreeFind<CR>
+
+        nnoremap <C-p> :CtrlP<CR>
+" }
 
 let g:ctrlp_map = '<leader>P'
 let g:ctrlp_cmd = 'CtrlP'
@@ -88,7 +124,8 @@ endif
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+"
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -153,14 +190,14 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
+" if has('nvim-0.4.0') || has('patch-8.2.0750')
+"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
@@ -228,12 +265,19 @@ call plug#begin()
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
+Plug 'tribela/vim-transparent'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
+" <NERDTREE>
+Plug 'scrooloose/nerdtree'
 Plug 'wellle/context.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Make sure you use single quotes
 Plug 'dyng/ctrlsf.vim'
+
 
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
 
@@ -258,7 +302,6 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-default branch
@@ -278,4 +321,8 @@ Plug '~/my-prototype-plugin'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
+Plug 'joshdick/onedark.vim'
+Plug 'sainnhe/sonokai'
 call plug#end()
+
+colorscheme sonokai

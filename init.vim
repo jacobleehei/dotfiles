@@ -12,8 +12,27 @@ set showmode
 set mouse=
 set shell=/usr/bin/fish
 set title
+
+" <Lazygit>--------------------{
+        nnoremap <silent> <leader>gg :LazyGit<CR>
+" }
+
+" <Vimspector>-----------------{
+        nnoremap <Leader>dd :call vimspector#Launch()<CR>
+        nnoremap <Leader>de :call vimspector#Reset()<CR>
+        nnoremap <Leader>dc :call vimspector#Continue()<CR>
+
+        nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+        nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
+
+        nmap <Leader>dk <Plug>VimspectorRestart
+        nmap <Leader>dh <Plug>VimspectorStepOut
+        nmap <Leader>dl <Plug>VimspectorStepInto
+        nmap <Leader>dj <Plug>VimspectorStepOver
+" }
 " <Telescope>------------------{
         " Find files using Telescope command-line sugar.
+        nnoremap <C-p> :Telescope find_files<CR>
         nnoremap <leader>ff <cmd>Telescope find_files<cr>
         nnoremap <leader>fg <cmd>Telescope live_grep<cr>
         nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -24,44 +43,44 @@ set title
     ">> Basic settings
         let g:NERDTreeChDirMode = 2  "Change current folder as root
 
-    ">> UI settings
-        let NERDTreeQuitOnOpen=1   " Close NERDtree when files was opened
-        let NERDTreeMinimalUI=1    " Start NERDTree in minimal UI mode (No help lines)
-        let NERDTreeDirArrows=1    " Display arrows instead of ascii art in NERDTree
-        let NERDTreeChDirMode=2    " Change current working directory based on root directory in NERDTree
-        let g:NERDTreeHidden=1     " Don't show hidden files
-        let NERDTreeWinSize=30     " Initial NERDTree width
-        let NERDTreeAutoDeleteBuffer = 1  " Auto delete buffer deleted with NerdTree
-        "let NERDTreeShowBookmarks=0   " Show NERDTree bookmarks
-        let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '__pycache__']   " Hide temp files in NERDTree
-        "let g:NERDTreeShowLineNumbers=1  " Show Line Number
-    " Open Nerdtree when there's no file opened
-        autocmd vimenter * if !argc()|NERDTree|endif
-    " Or, auto-open Nerdtree
-        "autocmd vimenter * NERDTree
-    " Close NERDTree when there's no other windows
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    " Customize icons on Nerdtree
-        let g:NERDTreeDirArrowExpandable = '▸'
-        let g:NERDTreeDirArrowCollapsible = '▾'
+      ">> UI settings
+          let NERDTreeQuitOnOpen=1   " Close NERDtree when files was opened
+          let NERDTreeMinimalUI=1    " Start NERDTree in minimal UI mode (No help lines)
+          let NERDTreeDirArrows=1    " Display arrows instead of ascii art in NERDTree
+          let NERDTreeChDirMode=2    " Change current working directory based on root directory in NERDTree
+          let g:NERDTreeHidden=1     " Don't show hidden files
+          let NERDTreeWinSize=30     " Initial NERDTree width
+          let NERDTreeAutoDeleteBuffer = 1  " Auto delete buffer deleted with NerdTree
+          "let NERDTreeShowBookmarks=0   " Show NERDTree bookmarks
+          let NERDTreeIgnore = ['\.pyc$', '\.swp', '\.swo', '__pycache__']   " Hide temp files in NERDTree
+          "let g:NERDTreeShowLineNumbers=1  " Show Line Number
+      " Open Nerdtree when there's no file opened
+          autocmd vimenter * if !argc()|NERDTree|endif
+      " Or, auto-open Nerdtree
+          "autocmd vimenter * NERDTree
+      " Close NERDTree when there's no other windows
+          autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+      " Customize icons on Nerdtree
+          let g:NERDTreeDirArrowExpandable = '▸'
+          let g:NERDTreeDirArrowCollapsible = '▾'
 
-        nnoremap <leader>n :NERDTreeFocus<CR>
-        nnoremap <C-t> :NERDTreeToggle<CR>
-        nnoremap <C-n> :NERDTree<CR>
-        nnoremap <C-f> :NERDTreeFind<CR>
+          nnoremap <leader>n :NERDTreeFocus<CR>
+          nnoremap <C-t> :NERDTreeToggle<CR>
+          nnoremap <C-n> :NERDTree<CR>
+          nnoremap <C-f> :NERDTreeFind<CR>
 
-        nnoremap <C-p> :CtrlP<CR>
-" }
+  " }
 
-let g:ctrlp_map = '<leader>P'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-let g:ctrlp_working_path_mode=0
-let g:ctrlp_match_window_bottom=1
-let g:ctrlp_max_height=15
-let g:ctrlp_match_window_reversed=0
-let g:ctrlp_mruf_max=500
-let g:ctrlp_follow_symlinks=1
+  " nnoremap <C-p> :CtrlP<CR>
+" let g:ctrlp_map = '<leader>P'
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+" let g:ctrlp_working_path_mode=0
+" let g:ctrlp_match_window_bottom=1
+" let g:ctrlp_max_height=15
+" let g:ctrlp_match_window_reversed=0
+" let g:ctrlp_mruf_max=500
+" let g:ctrlp_follow_symlinks=1
 
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 set smartindent
@@ -265,6 +284,9 @@ call plug#begin()
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
+Plug 'gko/vim-coloresque'
+Plug 'kdheepak/lazygit.nvim'
+Plug 'puremourning/vimspector'
 Plug 'tribela/vim-transparent'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
@@ -290,7 +312,7 @@ Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 
-Plug 'kien/ctrlp.vim'
+" Plug 'kien/ctrlp.vim'
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'

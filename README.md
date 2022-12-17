@@ -1,1 +1,0 @@
-# nveovim-config

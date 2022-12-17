@@ -1,6 +1,6 @@
 syntax on
 set nocompatible
-set backspace=indent,eol,start
+set backspace=eol,start
 set ruler
 set showcmd
 set relativenumber 
@@ -10,8 +10,16 @@ set shiftwidth=4
 set nu
 set showmode
 set mouse=
-set shell=/usr/bin/fish
+set shell=/bin/bash
 set title
+set cursorline
+set shiftwidth=2
+set expandtab
+
+" <Prettier>-------------------{
+        let g:neoformat_try_node_exe = 1
+        nmap <Leader>py <Plug>(Prettier)
+" }
 
 " <Lazygit>--------------------{
         nnoremap <silent> <leader>gg :LazyGit<CR>
@@ -71,23 +79,7 @@ set title
 
   " }
 
-  " nnoremap <C-p> :CtrlP<CR>
-" let g:ctrlp_map = '<leader>P'
-" let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
-" let g:ctrlp_working_path_mode=0
-" let g:ctrlp_match_window_bottom=1
-" let g:ctrlp_max_height=15
-" let g:ctrlp_match_window_reversed=0
-" let g:ctrlp_mruf_max=500
-" let g:ctrlp_follow_symlinks=1
-
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
-set smartindent
-set tabstop=2
-set shiftwidth=2
-set expandtab
-
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -100,11 +92,11 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
-set updatetime=300
+set updatetime=500
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -284,6 +276,11 @@ call plug#begin()
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
+Plug 'Yggdroot/indentLine'
+let g:indentLine_enabled=2
+nmap <Leader>il :IndentLinesToggle<CR>
+
+Plug 'sbdchd/neoformat'
 Plug 'gko/vim-coloresque'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'puremourning/vimspector'
@@ -299,8 +296,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Make sure you use single quotes
 Plug 'dyng/ctrlsf.vim'
-
-
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

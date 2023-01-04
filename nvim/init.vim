@@ -9,7 +9,7 @@ set autoindent
 set shiftwidth=4
 set nu
 set showmode
-set mouse=
+set mouse=nvi
 set shell=/bin/bash
 set title
 set cursorline
@@ -276,6 +276,8 @@ call plug#begin()
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
+Plug 'nvim-telescope/telescope-symbols.nvim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_enabled=2
 nmap <Leader>il :IndentLinesToggle<CR>
@@ -340,6 +342,8 @@ Plug '~/my-prototype-plugin'
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/sonokai'
+
+Plug 'puremourning/vimspector'
 call plug#end()
 
 colorscheme sonokai

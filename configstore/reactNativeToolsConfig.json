@@ -31,9 +31,9 @@
 		"longPeriodToRemind": 90,
 		"popCoveragePercent": 0.1,
 		"enabled": true,
-		"daysLeftBeforeSurvey": 22,
+		"daysLeftBeforeSurvey": 18,
 		"surveyName": "userSatisfactionSurvey",
 		"surveyUrl": "https://www.surveymonkey.com/r/6FJGVDV",
-		"lastExtensionUsageDate": "2022-12-17T04:21:26.214Z"
+		"lastExtensionUsageDate": "2023-01-02T16:50:32.002Z"
 	}
 }

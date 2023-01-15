@@ -16,9 +16,22 @@ set cursorline
 set shiftwidth=2
 set expandtab
 
+let s:enabled = 1
+function! ToggleNumberLine() 
+  if s:enabled
+    set nonu nornu
+    let s:enabled = 0
+  else
+    set rnu
+    let s:enabled = 1
+  endif
+endfunction
+
+nnoremap <C-n> :call ToggleNumberLine()<CR>
+
 " <Prettier>-------------------{
         let g:neoformat_try_node_exe = 1
-        nmap <Leader>py <Plug>(Prettier)
+        nnoremap <Leader>py <Plug>(Prettier)
 " }
 
 " <Lazygit>--------------------{
@@ -74,7 +87,6 @@ set expandtab
 
           nnoremap <leader>n :NERDTreeFocus<CR>
           nnoremap <C-t> :NERDTreeToggle<CR>
-          nnoremap <C-n> :NERDTree<CR>
           nnoremap <C-f> :NERDTreeFind<CR>
 
   " }
@@ -147,6 +159,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nnoremap <Leader>fo <cmd>CocList outline<cr>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -254,7 +267,7 @@ let g:airline#extensions#tabline#formatter = 'default'  " f/p/file-name.js
 let g:airline#extensions#tabline#formatter = 'jsformatter' " path-to/f
 let g:airline#extensions#tabline#formatter = 'unique_tail' " file-name.js
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_theme='onedark'
+let g:airline_theme='dracula'
 
 " Add plugin manager
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -289,6 +302,7 @@ Plug 'puremourning/vimspector'
 Plug 'tribela/vim-transparent'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+let g:telescope_file_ignore_patterns = ["node_modules"]
 
 " <NERDTREE>
 Plug 'scrooloose/nerdtree'
@@ -298,7 +312,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Make sure you use single quotes
 Plug 'dyng/ctrlsf.vim'
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-go']  " list of CoC extensions needed
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -344,6 +358,14 @@ Plug 'joshdick/onedark.vim'
 Plug 'sainnhe/sonokai'
 
 Plug 'puremourning/vimspector'
+Plug 'airblade/vim-gitgutter'
+Plug 'dracula/vim', { 'as': 'dracula' }
+let g:gitgutter_async=0
+let g:gitgutter_max_signs = 2000
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
 call plug#end()
 
-colorscheme sonokai
+colorscheme dracula
+" colorscheme sonokai

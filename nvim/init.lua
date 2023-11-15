@@ -24,3 +24,11 @@ require('telescope').setup {
 require('tailwind-sorter').setup {
   on_save_pattern = { '*.html', '*.jsx', '*.tsx' }
 }
+
+require('nvim-treesitter.configs').setup {
+  ensure_installed = { "html", "css", "vim", "lua", "javascript", "typescript", "tsx", "java", "python", "gosum", "gomod", "c", "bash" },
+
+  highlight = {
+    enable = true,
+  }
+}

@@ -29,7 +29,6 @@ vim.cmd([[
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tribela/vim-transparent'
-  Plug 'nvim-telescope/telescope-file-browser.nvim'
 
   call plug#end()
 ]])

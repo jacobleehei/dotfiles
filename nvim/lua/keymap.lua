@@ -53,7 +53,7 @@ vim.api.nvim_set_keymap('n', '<Leader>dl', '<Plug>VimspectorStepInto', {})
 vim.api.nvim_set_keymap('n', '<Leader>dj', '<Plug>VimspectorStepOver', {})
 
 -- <Telescope>------------------
-vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope file_browser<CR>', {})
+vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope find_files<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', {})

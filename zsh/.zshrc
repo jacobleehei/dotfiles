@@ -27,7 +27,8 @@ alias vim='nvim'
 alias lg='lazygit'
 alias t='tmux'
 alias docker-compose='docker compose'
-# alias code='/mnt/c/Program\ Files/Microsoft\ VS\ Code/bin/code'
+alias d='docker'
+alias c='clear'
 
 alias sshc="vim ~/.ssh/config"
 alias zshc='vim ~/.zshrc && source ~/.zshrc && echo "zshrc reloaded"'

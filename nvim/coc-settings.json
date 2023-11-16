@@ -1,7 +1,8 @@
 {
   "diagnostic.checkCurrentLine": true,
   "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.virtualTextCurrentLineOnly": true,
+  "Lua.diagnostics.globals": ["vim"],
   "languageserver": {
     "golang": {
       "command": "gopls",

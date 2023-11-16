@@ -17,3 +17,5 @@ google-chrome
 vlc
 wslu
 pulse
+nvim/pack/airblade/start/vim-gitgutter
+nvim/sync.sh

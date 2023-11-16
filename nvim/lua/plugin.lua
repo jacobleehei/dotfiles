@@ -1,30 +1,35 @@
 -- Plugins
-vim.cmd([[call plug#begin('~/.vim/plugged')]])
-vim.cmd([[Plug 'nvim-telescope/telescope-symbols.nvim']])
-vim.cmd([[Plug 'ryanoasis/vim-devicons']])
-vim.cmd([[Plug 'kdheepak/lazygit.nvim']])
-vim.cmd([[Plug 'tribela/vim-transparent']])
-vim.cmd([[Plug 'nvim-lua/plenary.nvim']])
-vim.cmd([[Plug 'nvim-telescope/telescope.nvim']])
-vim.cmd([[Plug 'scrooloose/nerdtree']])
-vim.cmd([[Plug 'Xuyuanp/nerdtree-git-plugin']])
-vim.cmd([[Plug 'neoclide/coc.nvim', {'branch': 'release'}]])
-vim.cmd([[Plug 'jiangmiao/auto-pairs']])
-vim.cmd([[Plug 'yuezk/vim-js']])
-vim.cmd([[Plug 'HerringtonDarkholme/yats.vim']])
-vim.cmd([[Plug 'maxmellon/vim-jsx-pretty']])
-vim.cmd([[Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }]])
-vim.cmd([[Plug '~/my-prototype-plugin']])
-vim.cmd([[Plug 'prisma/vim-prisma']])
-vim.cmd([[Plug 'airblade/vim-gitgutter']])
-vim.cmd([[Plug 'nvim-lualine/lualine.nvim']])
-vim.cmd([[Plug 'nvim-tree/nvim-web-devicons']])
-vim.cmd([[Plug 'rhysd/git-messenger.vim']])
-vim.cmd([[Plug 'kaicataldo/material.vim', { 'branch': 'main' }]])
-vim.cmd([[Plug 'vim-test/vim-test']])
-vim.cmd([[Plug 'ThePrimeagen/harpoon']])
-vim.cmd([[Plug 'nvim-treesitter/nvim-treesitter']])
-vim.cmd([[Plug 'laytan/tailwind-sorter.nvim', { 'do': 'cd formatter && npm i && npm run build' }]])
-vim.cmd([[Plug 'antoinemadec/FixCursorHold.nvim']])
-vim.cmd([[Plug 'christoomey/vim-tmux-navigator']])
-vim.cmd([[call plug#end()]])
+vim.cmd([[
+  call plug#begin('~/.vim/plugged')
+
+  Plug 'nvim-telescope/telescope-symbols.nvim'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'kdheepak/lazygit.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'yuezk/vim-js'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug '~/my-prototype-plugin'
+  Plug 'prisma/vim-prisma'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'nvim-tree/nvim-web-devicons'
+  Plug 'rhysd/git-messenger.vim'
+  Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+  Plug 'vim-test/vim-test'
+  Plug 'ThePrimeagen/harpoon'
+  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'laytan/tailwind-sorter.nvim', { 'do': 'cd formatter && npm i && npm run build' }
+  Plug 'antoinemadec/FixCursorHold.nvim'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tribela/vim-transparent'
+  Plug 'nvim-telescope/telescope-file-browser.nvim'
+
+  call plug#end()
+]])
